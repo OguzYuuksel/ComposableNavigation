@@ -36,14 +36,29 @@ struct ComposableNavigationApp: App {
         // store.deeplink(.musicScreen(nil))
         // store.deeplink(.musicScreen(.loading))
         // store.deeplink(.musicScreen(.requestAlert(.init(title: .init("DeepLinkAlert")))))
-        // FIXME: If you deeplink more than two level, navigation will stay at the second level.
-        // This is a known `NavigationLink` bug.
+        // store.deeplink(.musicScreen(.browser(.init(contents: [0, 1, 2]))))
+        //
         // store.deeplink(
         //     .musicScreen(
-        //         .browser(.init(contents: [0, 1, 2])
+        //        .browser(
+        //            .init(
+        //                destination: .child(
+        //                    .init(
+        //                        destination: .child(
+        //                            .init(
+        //                                destination: .child(.init(contents: [0, 9, 2])),
+        //                                  contents: [1]
+        //                            )
+        //                        ),
+        //                          contents: [5, 6]
+        //                    )
+        //                ),
+        //                contents: [0, 1, 2]
+        //            )
         //         )
         //     )
         // )
+        //
         // store.deeplink(.settingsScreen)
         // store.deeplink(.soundScreen)
         return store

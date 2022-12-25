@@ -63,7 +63,7 @@ struct BrowserScreen: View {
             .loading(unwrapping: $state.destination, case: /BrowserScreenState.Destination.loading)
             .alert(unwrapping: $state.destination, case: /BrowserScreenState.Destination.requestAlert) { _ in }
             .navigationTitle(title)
-            .navigationLink(unwrapping: $state.destination, case: /BrowserScreenState.Destination.child) { $browserState in
+            .navigationDestination(unwrapping: $state.destination, case: /BrowserScreenState.Destination.child) { $browserState in
                 BrowserScreen(state: $browserState) { int in
                     onTap(int)
                 }

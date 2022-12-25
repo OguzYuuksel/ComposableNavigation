@@ -26,7 +26,7 @@ struct MusicScreen: View {
     var state: Binding<MusicScreenState> { $store.state.musicScreenState }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Button {
                     state.destination.wrappedValue = .information
@@ -51,13 +51,13 @@ struct MusicScreen: View {
             .loading(unwrapping: state.destination, case: /MusicScreenState.Destination.loading)
             .alert(unwrapping: state.destination, case: /MusicScreenState.Destination.requestAlert) { _ in }
             // FIXME: When deeplinked to the information screen, `.sheet` modifier slips touch point on simulator.
-            // Even removing all other modifiers and `NavigationView` didn't fix it.
+            // Even removing all other modifiers and `NavigationStack` didn't fix it.
             .sheet(unwrapping: state.destination, case: /MusicScreenState.Destination.information) { _ in
                 Text("Information Sheet.")
             }
             .navigationTitle("Music Tap")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationLink(unwrapping: state.destination, case: /MusicScreenState.Destination.browser) { $browserState in
+            .navigationDestination(unwrapping: state.destination, case: /MusicScreenState.Destination.browser) { $browserState in
                 BrowserScreen(state: $browserState) { content in
                     // Handler sets inmost destination to loading
                     browserState.inmost.destination = .loading
