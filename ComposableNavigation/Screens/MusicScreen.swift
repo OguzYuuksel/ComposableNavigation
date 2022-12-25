@@ -76,7 +76,6 @@ struct MusicScreen: View {
                 }
             }
         }
-        .navigationViewStyle(.stack)
     }
 }
 

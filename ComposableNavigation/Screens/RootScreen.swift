@@ -14,7 +14,9 @@ struct RootState: Equatable {
     // Below alerts may show-up in the same time
     // since they are errors from different endpoints.
     // They can be occour in the same time, we wouldn't like to lose the information
-    // TODO: Might be converted into array?
+    // TODO: [Bad Idea!] alerts might be converted into array?
+    // -- Since AlertState is generic, the type will change according
+    //    to the alerts, [AlertState<????>] won't be a generic solution.
     var aMonitoringAlert: AlertState<String>?
     var bMonitoringAlert: AlertState<String>?
     var cMonitoringAlert: AlertState<String>?

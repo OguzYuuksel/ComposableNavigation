@@ -6,6 +6,7 @@ class Store: ObservableObject {
     @Published var state: RootState = .init()
 }
 
+// MARK: Store - Deeplink
 extension Store {
     func deeplink(_ destination: Destination) {
         switch destination {
@@ -32,7 +33,7 @@ struct ComposableNavigationApp: App {
     let store: Store = {
         let store = Store()
         // MARK: Deeplinks
-        // store.deeplink(.musicScreen(.information)) // FIXME: Buggy
+        // store.deeplink(.musicScreen(.information))
         // store.deeplink(.musicScreen(nil))
         // store.deeplink(.musicScreen(.loading))
         // store.deeplink(.musicScreen(.requestAlert(.init(title: .init("DeepLinkAlert")))))
